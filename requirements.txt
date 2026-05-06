@@ -1,4 +1,5 @@
 streamlit
 streamlit-lottie
 geopy
-tensorflow-cpu==2.16.0
+tensorflow==2.13.0
+requests
