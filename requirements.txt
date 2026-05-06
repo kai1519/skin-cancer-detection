@@ -1,5 +1,7 @@
 streamlit
 streamlit-lottie
 geopy
-tensorflow==2.13.0
 requests
+keras
+h5py
+numpy
