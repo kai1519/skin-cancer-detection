@@ -1,7 +1,7 @@
 import numpy as np
 import PIL
 import streamlit as st
-import tf_keras as keras
+import keras
 
 st.set_page_config(
     page_title="Diagnose.AI",
@@ -46,17 +46,15 @@ if st.button("Predict"):
             with st.spinner("Loading model..."):
                 model = load_model()
             with st.spinner("Processing image..."):
-                img = PIL.Image.open(pic)
-                img = img.resize((180, 180))
-                img = keras.preprocessing.image.img_to_array(img)
+                img = PIL.Image.open(pic).resize((180, 180))
+                img = np.array(img, dtype=np.float32)
                 img = np.expand_dims(img, axis=0)
                 prediction = model.predict(img)
                 score = float(np.max(prediction))
                 score = round(score * 100, 2)
             with st.spinner("Predicting..."):
-                prediction = np.argmax(prediction, axis=1)
-                prediction = prediction[0]
-                disease = str(labels[prediction]).title()
+                pred_index = int(np.argmax(prediction, axis=1)[0])
+                disease = str(labels[pred_index]).title()
                 st.metric("Prediction", disease, delta_color="off")
                 st.metric("Confidence", f"{score:.2f}%", delta_color="off")
         st.warning(
