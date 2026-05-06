@@ -2,6 +2,6 @@ streamlit
 streamlit-lottie
 geopy
 requests
-keras
-h5py
 numpy
+Pillow
+tf-keras
