@@ -4,4 +4,5 @@ geopy
 requests
 numpy
 Pillow
-tf-keras
+keras
+h5py
